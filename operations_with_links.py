@@ -46,6 +46,6 @@ def count_clicks(token, link):
 
 def is_shorten_link(url, token):
     try:
-        return count_clicks(token, link=url)
+        return f'Количество переходов по ссылке: {count_clicks(token, link=url)}'
     except requests.exceptions.HTTPError:
-        return shorten_link(url=url, token=token)
+        return f'Короткая ссылка: {shorten_link(url=url, token=token)}'
