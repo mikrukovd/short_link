@@ -1,27 +1,14 @@
 import os
-import requests
 
 from dotenv import load_dotenv
-from operations_with_links import shorten_link, count_clicks, is_shorten_link
+from operations_with_links import is_shorten_link
 
 
 def main():
-    url = input('Введите ссылку: ')
+    user_input_url = input('Введите ссылку: ')
     load_dotenv()
-    token = os.getenv('API')
-
-    if is_shorten_link(url=url):
-        try:
-            count_link = count_clicks(link=url, token=token)
-            print('Количество переходов по ссылке:', count_link)
-        except requests.exceptions.HTTPError as http_error:
-            print(http_error)
-    else:
-        try:
-            short_url = shorten_link(url=url, token=token)
-            print('Короткая ссылка:', short_url)
-        except requests.exceptions.HTTPError as http_error:
-            print({http_error})
+    token = os.getenv('VK_TOKEN')
+    print(is_shorten_link(url=user_input_url, token=token))
 
 
 if __name__ == '__main__':
