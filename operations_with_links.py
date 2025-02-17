@@ -45,7 +45,19 @@ def count_clicks(token, link):
 
 
 def is_shorten_link(url, token):
-    try:
-        return f'Количество переходов по ссылке: {count_clicks(token, link=url)}'
-    except requests.exceptions.HTTPError:
-        return f'Короткая ссылка: {shorten_link(url=url, token=token)}'
+    flag = True
+    link = 'https://api.vk.ru/method/utils.getLinkStats'
+    parsed_url = urlparse(url)
+    key = parsed_url.path[1:]
+    params = {
+        'access_token': token,
+        'v': 5.199,
+        'key': key
+    }
+    response = requests.get(url=link, params=params)
+    response.raise_for_status()
+
+    if 'error' in response.json():
+        flag = False
+
+    return flag
