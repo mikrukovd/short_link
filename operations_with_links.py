@@ -45,7 +45,6 @@ def count_clicks(token, link):
 
 
 def is_shorten_link(url, token):
-    flag = True
     link = 'https://api.vk.ru/method/utils.getLinkStats'
     parsed_url = urlparse(url)
     key = parsed_url.path[1:]
@@ -58,6 +57,6 @@ def is_shorten_link(url, token):
     response.raise_for_status()
 
     if 'error' in response.json():
-        flag = False
+        return False
 
-    return flag
+    return True
