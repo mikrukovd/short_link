@@ -7,7 +7,7 @@ from operations_with_links import is_shorten_link
 def main():
     user_input_url = input('Введите ссылку: ')
     load_dotenv()
-    token = os.getenv('VK_TOKEN')
+    token = os.environ('VK_TOKEN')
     print(is_shorten_link(url=user_input_url, token=token))
 
 
