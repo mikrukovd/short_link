@@ -56,7 +56,4 @@ def is_shorten_link(url, token):
     response = requests.get(url=link, params=params)
     response.raise_for_status()
 
-    if 'error' in response.json():
-        return False
-
-    return True
+    return 'error' not in response.json()
