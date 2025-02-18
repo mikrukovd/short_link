@@ -12,7 +12,7 @@ def main():
 
     if is_shorten_link(inputed_url, token):
         try:
-            print(f'Количество переходов по ссылке: {count_clicks(inputed_url, token)}')
+            print(f'Количество переходов по ссылке: {count_clicks(token, inputed_url)}')
         except requests.exceptions.HTTPError as http_error:
             print(http_error)
     else:
