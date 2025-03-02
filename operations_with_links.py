@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 
 
 def shorten_link(url, token):
+    '''Возврашает короткую ссылку'''
     short = 'https://api.vk.ru/method/utils.getShortLink'
     params = {
         'access_token': token,
@@ -22,6 +23,7 @@ def shorten_link(url, token):
 
 
 def count_clicks(token, link):
+    '''Считает количество переходов по ссылке'''
     url = 'https://api.vk.ru/method/utils.getLinkStats'
     parsed_link = urlparse(link)
     key = parsed_link.path[1:]
@@ -45,6 +47,7 @@ def count_clicks(token, link):
 
 
 def is_shorten_link(url, token):
+    '''Проверка на короткую ссылку'''
     link = 'https://api.vk.ru/method/utils.getLinkStats'
     parsed_url = urlparse(url)
     key = parsed_url.path[1:]
